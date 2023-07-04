@@ -3,7 +3,8 @@
         "order_id": 1,
         "customer_name": "Manas",
         "dish_ids": [
-            1,2
+            1,
+            2
         ],
         "quantity": null,
         "status": "preparing"
@@ -76,5 +77,15 @@
         ],
         "quantity": null,
         "status": "received"
+    },
+    "10": {
+        "order_id": 10,
+        "customer_name": "Koushik",
+        "dish_ids": [
+            3,
+            5
+        ],
+        "quantity": null,
+        "status": "delivered"
     }
 }

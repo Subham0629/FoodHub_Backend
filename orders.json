@@ -1,0 +1,80 @@
+{
+    "1": {
+        "order_id": 1,
+        "customer_name": "Manas",
+        "dish_ids": [
+            1,2
+        ],
+        "quantity": null,
+        "status": "preparing"
+    },
+    "3": {
+        "order_id": 3,
+        "customer_name": "Subham",
+        "dish_ids": [
+            1
+        ],
+        "quantity": null,
+        "status": "preparing"
+    },
+    "4": {
+        "order_id": 4,
+        "customer_name": "Subh",
+        "dish_ids": [
+            1,
+            2
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "5": {
+        "order_id": 5,
+        "customer_name": "John Doe",
+        "dish_ids": [
+            1,
+            2
+        ],
+        "quantity": null,
+        "status": "pending"
+    },
+    "6": {
+        "order_id": 6,
+        "customer_name": "Karan",
+        "dish_ids": [
+            2,
+            "a34c82fa-9a96-452b-b162-5fdc331cdbd9"
+        ],
+        "quantity": null,
+        "status": "ready for pickup"
+    },
+    "7": {
+        "order_id": 7,
+        "customer_name": "Monty",
+        "dish_ids": [
+            1,
+            5
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "8": {
+        "order_id": 8,
+        "customer_name": "Manisha",
+        "dish_ids": [
+            2,
+            "a34c82fa-9a96-452b-b162-5fdc331cdbd9"
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "9": {
+        "order_id": 9,
+        "customer_name": "Varun",
+        "dish_ids": [
+            2,
+            5
+        ],
+        "quantity": null,
+        "status": "received"
+    }
+}

@@ -1,16 +1,19 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_socketio import SocketIO, send, emit
+
 import json
 import uuid
 
-
-
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins='*', async_mode='threading', logger=True, engineio_logger=True, broadcast=True)
+
 MENU_FILE = 'menu.json'
 ORDER_FILE = 'orders.json'
-# Counter variable to keep track of the last generated menu ID
 
+# Counter variable to keep track of the last generated menu ID
+menu_id_counter = 5
 
 # Load menu data from JSON file
 def load_menu_data():
@@ -54,8 +57,6 @@ def get_menu():
     menu = load_menu_data()
     return jsonify(menu)
 
-
-menu_id_counter = 5
 @app.route('/add_dish', methods=['POST'])
 def add_dish():
     dish = request.get_json()
@@ -74,24 +75,25 @@ def add_dish():
     menu[menu_id] = {
         'dish_id': menu_id,
         'dish_name': dish_name,
-        'price': price,
-        'availability': availability
+        'price': price, 
+        'availability': availability,
+        'rating':[],
+        'reviews':[]
     }
 
     save_menu_data(menu)
 
     return jsonify({'message': 'Dish added successfully!', 'dish': menu[menu_id]})
 
-
 @app.route('/remove_dish/<dish_id>', methods=['DELETE'])
 def remove_dish(dish_id):
     menu = load_menu_data()
 
-    if str(dish_id) not in menu:
+    if dish_id not in menu:
         return jsonify({'message': 'Invalid dish ID!'})
 
     # Remove the dish from the menu
-    del menu[str(dish_id)]
+    del menu[dish_id]
 
     # Save the updated menu data
     save_menu_data(menu)
@@ -107,27 +109,25 @@ def new_order():
     
     dish_ids = order.get('dish_ids', [])
     for dish_id in dish_ids:
-        dish_found = False
-        for dish in menu.values():
-            if dish.get('dish_id') == dish_id and dish.get('availability'):
-                dish_found = True
-                break
-        if not dish_found:
+        dish = menu.get(dish_id)
+        if not dish or not dish.get('availability'):
             return jsonify({'message': 'Invalid dish ID or dish not available!'})
-    
+
     order_data[order_id] = {
         'order_id': order_id,
         'customer_name': order.get('customer_name'),
         'dish_ids': order.get('dish_ids'),
         'quantity': order.get('quantity'),
-        'status': 'received'
+        'status': 'received',
+        'rating':[],
+        'reviews':[]
     }
     save_order_data(order_data)
+
+    # Send a socket event to all connected clients with the updated order status
+    socketio.emit({'order_id': order_id, 'status': 'received'}, namespace='/')
     
     return jsonify({'message': 'Order placed successfully!', 'order_id': order_id})
-
-
-
 
 @app.route('/update_order_status/<int:order_id>', methods=['PATCH'])
 def update_order_status(order_id):
@@ -142,10 +142,11 @@ def update_order_status(order_id):
     
     order_data[str(order_id)]['status'] = new_status
     save_order_data(order_data)
+
+    # Send a socket event to all connected clients with the updated order status
+    socketio.emit('order_status_updated',{'order_id': order_id, 'status': new_status})
     
     return jsonify({'message': 'Order status updated successfully!'})
-
-
 
 @app.route('/review_orders', methods=['GET'])
 def review_orders():
@@ -165,17 +166,35 @@ def update_availability(dish_id):
 
     return jsonify({'message': 'Availability updated successfully!', 'dish': menu[dish_id]})
 
+@app.route('/update_rating_review/<dish_id>', methods=['PATCH'])
+def update_rating_review(dish_id):
+    menu = load_menu_data()
+
+    if dish_id not in menu:
+        return jsonify({'message': 'Invalid dish ID!'})
+
+    new_rating = request.json.get('rating')
+    new_review = request.json.get('reviews')
+
+    if new_rating is None or new_review is None:
+        return jsonify({'message': 'Invalid rating or review!'})
+
+    dish = menu[dish_id]
+    dish['rating'].append(new_rating)
+    dish['reviews'].append(new_review)
+    save_menu_data(menu)
+
+    return jsonify({'message': 'Rating and review updated successfully!'})
 
 
 
+@socketio.on('connect', namespace='/')
+def handle_connect():
+    print('Client connected')
 
+@socketio.on('disconnect', namespace='/')
+def handle_disconnect():
+    print('Client disconnected')
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-# "6": {
-#     "availability": false,
-#     "dish_id": 6,
-#     "dish_name": "Momos",
-#     "price": 10.99
-# }
+    socketio.run(app, debug=True)

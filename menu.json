@@ -1,38 +1,92 @@
 {
     "1": {
-        "dish_id": 1,
+        "dish_id": "1",
         "dish_name": "Margherita Pizza",
         "price": 10.99,
-        "availability": true
+        "availability": true,
+        "rating": [
+            5,
+            2,
+            5,
+            3,
+            3,
+            5
+        ],
+        "reviews": [
+            "aaddsds",
+            "aaddsds",
+            "Tasty",
+            "Need to be improved",
+            "Need to be improved",
+            "Delicious"
+        ]
     },
     "2": {
-        "dish_id": 2,
+        "dish_id": "2",
         "dish_name": "Pasta Alfredo",
         "price": 8.99,
-        "availability": true
+        "availability": true,
+        "rating": [
+            3
+        ],
+        "reviews": [
+            "Delicious"
+        ]
     },
     "3": {
-        "dish_id": 3,
+        "dish_id": "3",
         "dish_name": "Chicken Biryani",
         "price": 12.99,
-        "availability": true
+        "availability": true,
+        "rating": [
+            2,
+            2,
+            2
+        ],
+        "reviews": [
+            "Need to be improved",
+            "Need to be improved",
+            "Need to be improved"
+        ]
     },
     "4": {
-        "dish_id": 4,
+        "dish_id": "4",
         "dish_name": "Paneer Tikka",
         "price": 9.99,
-        "availability": true
+        "availability": true,
+        "rating": [
+            5
+        ],
+        "reviews": [
+            "Delicious"
+        ]
     },
     "5": {
-        "dish_id": 5,
+        "dish_id": "5",
         "dish_name": "Garlic Bread",
         "price": 4.99,
-        "availability": true
+        "availability": true,
+        "rating": [],
+        "reviews": []
     },
     "d7a1bba3-cafa-4445-abe9-de31c953580a": {
         "dish_id": "d7a1bba3-cafa-4445-abe9-de31c953580a",
         "dish_name": "Samosa",
         "price": 15,
-        "availability": false
+        "availability": true,
+        "rating": [
+            2
+        ],
+        "reviews": [
+            "Need to be improved"
+        ]
+    },
+    "f523be5e-66ac-4585-83a7-311879d86bde": {
+        "dish_id": "f523be5e-66ac-4585-83a7-311879d86bde",
+        "dish_name": "Burger",
+        "price": 11.5,
+        "availability": true,
+        "rating": [],
+        "reviews": []
     }
 }

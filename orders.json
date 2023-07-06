@@ -1,1 +1,125 @@
-{"1": {"order_id": 1, "customer_name": "Manas", "dish_ids": ["1", "2"], "quantity": null, "status": "pending"}, "3": {"order_id": 3, "customer_name": "Subham", "dish_ids": ["1"], "quantity": null, "status": "preparing"}, "4": {"order_id": 4, "customer_name": "Subh", "dish_ids": ["1", "2"], "quantity": null, "status": "Delivered"}, "5": {"order_id": 5, "customer_name": "John Doe", "dish_ids": ["1", "2"], "quantity": null, "status": "pending"}, "6": {"order_id": 6, "customer_name": "Karan", "dish_ids": ["2", "a34c82fa-9a96-452b-b162-5fdc331cdbd9"], "quantity": null, "status": "ready for pickup"}, "7": {"order_id": 7, "customer_name": "Monty", "dish_ids": ["1", "5"], "quantity": null, "status": "received"}, "8": {"order_id": 8, "customer_name": "Manisha", "dish_ids": ["2", "a34c82fa-9a96-452b-b162-5fdc331cdbd9"], "quantity": null, "status": "received"}, "9": {"order_id": 9, "customer_name": "Varun", "dish_ids": ["2", "5"], "quantity": null, "status": "received"}, "10": {"order_id": 10, "customer_name": "Koushik", "dish_ids": ["3", "5"], "quantity": null, "status": "delivered"}, "11": {"order_id": 11, "customer_name": "Mayank", "dish_ids": ["2"], "quantity": null, "status": "pending"}, "12": {"order_id": 12, "customer_name": "Mohan", "dish_ids": ["3", "d7a1bba3-cafa-4445-abe9-de31c953580a", "1"], "quantity": null, "status": "received", "rating": [], "reviews": []}, "13": {"order_id": 13, "customer_name": "Rohan", "dish_ids": ["4", "1"], "quantity": null, "status": "received", "rating": [], "reviews": []}}
+{
+    "1": {
+        "order_id": 1,
+        "customer_name": "Manas",
+        "dish_ids": [
+            "1",
+            "2"
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "3": {
+        "order_id": 3,
+        "customer_name": "Subham",
+        "dish_ids": [
+            "1"
+        ],
+        "quantity": null,
+        "status": "preparing"
+    },
+    "4": {
+        "order_id": 4,
+        "customer_name": "Subh",
+        "dish_ids": [
+            "1",
+            "2"
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "5": {
+        "order_id": 5,
+        "customer_name": "John Doe",
+        "dish_ids": [
+            "1",
+            "2"
+        ],
+        "quantity": null,
+        "status": "pending"
+    },
+    "6": {
+        "order_id": 6,
+        "customer_name": "Karan",
+        "dish_ids": [
+            "2",
+            "a34c82fa-9a96-452b-b162-5fdc331cdbd9"
+        ],
+        "quantity": null,
+        "status": "ready for pickup"
+    },
+    "7": {
+        "order_id": 7,
+        "customer_name": "Monty",
+        "dish_ids": [
+            "1",
+            "5"
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "8": {
+        "order_id": 8,
+        "customer_name": "Manisha",
+        "dish_ids": [
+            "2",
+            "a34c82fa-9a96-452b-b162-5fdc331cdbd9"
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "9": {
+        "order_id": 9,
+        "customer_name": "Varun",
+        "dish_ids": [
+            "2",
+            "5"
+        ],
+        "quantity": null,
+        "status": "received"
+    },
+    "10": {
+        "order_id": 10,
+        "customer_name": "Koushik",
+        "dish_ids": [
+            "3",
+            "5"
+        ],
+        "quantity": null,
+        "status": "delivered"
+    },
+    "11": {
+        "order_id": 11,
+        "customer_name": "Mayank",
+        "dish_ids": [
+            "2"
+        ],
+        "quantity": null,
+        "status": "pending"
+    },
+    "12": {
+        "order_id": 12,
+        "customer_name": "Mohan",
+        "dish_ids": [
+            "3",
+            "d7a1bba3-cafa-4445-abe9-de31c953580a",
+            "1"
+        ],
+        "quantity": null,
+        "status": "received",
+        "rating": [],
+        "reviews": []
+    },
+    "13": {
+        "order_id": 13,
+        "customer_name": "Rohan",
+        "dish_ids": [
+            "4",
+            "1"
+        ],
+        "quantity": null,
+        "status": "received",
+        "rating": [],
+        "reviews": []
+    }
+}

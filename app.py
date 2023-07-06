@@ -3,17 +3,20 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 from pymongo import MongoClient
 from bson import ObjectId
+from dotenv import load_dotenv
 import requests
 import openai
 import json
 import uuid
+import os
 
 app = Flask(__name__)
 CORS(app)
+load_dotenv()
 socketio = SocketIO(app, cors_allowed_origins='*', async_mode='threading', logger=True, engineio_logger=True, broadcast=True)
-openai.api_key = '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'
+openai.api_key = os.environ.get("open_api_key")
 # MongoDB connection
-client = MongoClient('mongodb+srv://subham:kandari@cluster0.g0fjbkk.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient(os.environ.get("mongoUrl"))
 db = client['foodhub']  # Replace 'food_delivery' with your database name
 menu_collection = db['menu']
 order_collection = db['orders']

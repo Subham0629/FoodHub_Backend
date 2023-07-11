@@ -65,8 +65,10 @@ def add_dish():
         'rating': [],
         'reviews': []
     }
-
+    print(new_dish)
     menu_collection.insert_one(new_dish)
+    new_dish.pop('_id', None)
+    
 
     return jsonify({'message': 'Dish added successfully!', 'dish': new_dish})
 
@@ -98,6 +100,7 @@ def new_order():
     }
 
     order_collection.insert_one(new_order)
+    new_order.pop('_id', None)
 
     # Send a socket event to all connected clients with the updated order status
     socketio.emit('order_status_updated', {'order_id': order_id, 'status': 'received'}, namespace='/')

@@ -20,6 +20,7 @@ client = MongoClient(os.environ.get("mongoUrl"))
 db = client['foodhub']  # Replace 'food_delivery' with your database name
 menu_collection = db['menu']
 order_collection = db['orders']
+user_collection = db['users']
 
 # Generate a unique order ID
 def generate_order_id(order_data):
@@ -95,6 +96,7 @@ def new_order():
         'dish_ids': dish_ids,
         'quantity': order.get('quantity'),
         'status': 'received',
+        'customer_email':order.get('customer_email'),
         'rating': [],
         'reviews': []
     }
@@ -206,6 +208,51 @@ def get_chatbot_response(message):
         return chatbot_response
     else:
         return "Oops! Something went wrong with the chatbot."
+
+
+
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    user_data = request.get_json()
+    email = user_data.get('email')
+    password = user_data.get('password')
+
+    if not email or not password:
+        return jsonify({'message': 'Email and password are required!'})
+
+    existing_user = user_collection.find_one({'email': email})
+    if existing_user:
+        return jsonify({'message': 'Email already exists!'})
+
+    # Generate a random user ID using a combination of uuid and the counter
+    user_id = str(uuid.uuid4())
+
+    new_user = {
+        'user_id': user_id,
+        'email': email,
+        'password': password
+    }
+
+    user_collection.insert_one(new_user)
+
+    return jsonify({'message': 'User signup successful!', 'user_id': user_id})
+
+@app.route('/login', methods=['POST'])
+def login():
+    user_data = request.get_json()
+    email = user_data.get('email')
+    password = user_data.get('password')
+
+    if not email or not password:
+        return jsonify({'message': 'Email and password are required!'})
+
+    user = user_collection.find_one({'email': email, 'password': password})
+    if not user:
+        return jsonify({'message': 'Invalid credentials!'})
+
+    return jsonify({'message': 'Login successful!', 'user_id': user['user_id']})
+
 
 @socketio.on('connect', namespace='/')
 def handle_connect():

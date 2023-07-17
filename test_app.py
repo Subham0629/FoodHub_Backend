@@ -9,7 +9,7 @@ def client():
 
 def test_get_menu(client):
     response = client.get('/menu')
-    assert response.status_code == 200
+    assert response.status_code ==  200
     assert isinstance(response.json, list)
 
 def test_add_dish(client):
